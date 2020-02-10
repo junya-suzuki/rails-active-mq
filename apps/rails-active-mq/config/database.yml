@@ -1,0 +1,21 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  host: db
+  username: postgres
+  password:
+
+development:
+  <<: *default
+  database: rails_active_mq_development
+
+test:
+  <<: *default
+  database: rails_active_mq_test
+
+production:
+  <<: *default
+  database: rails_active_mq_production
+  username: rails_active_mq
+  password: <%= ENV['RAILS_ACTIVE_MQ_DATABASE_PASSWORD'] %>
